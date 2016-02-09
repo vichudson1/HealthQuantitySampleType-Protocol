@@ -72,6 +72,7 @@ private extension HealthQuantitySample {
 	func stringRepresentationForType(type: HKQuantityType) -> String {
 		switch type {
 		// for cases where there are formatters provided by the system.
+		// these formatters are defined as constants in the sources folder.
 		case HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!:
 			let formatterUnit = HKUnit.lengthFormatterUnitFromUnit(unitFromType(type))
 			return distanceFormatter.stringFromValue(value, unit: formatterUnit)
