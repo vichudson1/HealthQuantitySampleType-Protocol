@@ -7,12 +7,12 @@ import HealthKit
 	- Note: The sample variable is an optional. If you init an empty instance of your struct, `HealthSample()`, it will simply output "--" when cast into a string. This way you can set up your UI and update the HKSample in your type with the results of an HKQuery later.
 
 */
-struct HealthSample: HealthQuantitySample, CustomStringConvertible {
+struct HealthSample: HealthQuantitySampleType, CustomStringConvertible {
 	var sample: HKQuantitySample?
 }
 
 // lets create a bunch of samples to play with
-// The HKQuantity Samples are defined in the sources folder
+// The HKQuantity Samples used are defined in the sources folder
 var heartrate = HealthSample() // An empty Sample
 var walkingDistance = HealthSample(sample: distanceSample) // Walking Distance
 var bodyWeight = HealthSample(sample: weightSample) // Bodyweight
@@ -35,19 +35,19 @@ String(steps)
 
 // Accessing some of our free sample properties from the protocol extension
 heartrate.value
+heartrate.valueLabel
 heartrate.date
+heartrate.dateString
+heartrate.timeString
+heartrate.dateAndTimeString
 
 
 // Demo some other samples types
 String(walkingDistance)
-walkingDistance.value
 String(bodyWeight)
-bodyWeight.value
 String(bodyFat)
 String(bmi)
 String(glucose)
+glucose.valueLabel
 String(redRingSample)
 String(food)
-
-
-
