@@ -8,6 +8,13 @@ let numberFormatter: NSNumberFormatter = {
 	return formatter
 }()
 
+let integerFormatter: NSNumberFormatter = {
+	let formatter = NSNumberFormatter()
+	formatter.maximumFractionDigits = 0
+	formatter.numberStyle = .DecimalStyle
+	return formatter
+}()
+
 let weightFormatter: NSMassFormatter = {
 	let formatter = NSMassFormatter()
 	formatter.forPersonMassUse = true

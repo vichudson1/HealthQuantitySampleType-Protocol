@@ -142,15 +142,26 @@ public struct HealthKitUnitTypeManager {
 	]
 }
 
-/// More digestibly named constants for our HKQuantityTypes
-let stepCountType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierStepCount)!
-let dietaryEnergyType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDietaryEnergyConsumed)!
-let activeEnergyType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierActiveEnergyBurned)!
-let bodyFatPercentageType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyFatPercentage)!
-let bloodGlucoseType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBloodGlucose)!
-let heartRateType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
-let walkingRunningDistanceType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierDistanceWalkingRunning)!
-let bodyMassType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMass)!
-let bodyMassIndexType = HKObjectType.quantityTypeForIdentifier(HKQuantityTypeIdentifierBodyMassIndex)!
+/// One Instance of this declared in the Global Space
+var unitManager = HealthKitUnitTypeManager()
+
+/// HKUnit Convienience Variables
+var heartRateUnit: HKUnit { return unitManager.unitForQuantityType(heartRateType) }
+
+var bodyMassUnit: HKUnit { return unitManager.unitForQuantityType(bodyMassType) }
+var bodyFatPercentageUnit: HKUnit { return unitManager.unitForQuantityType(bodyFatPercentageType) }
+var bodyMassIndexUnit: HKUnit { return unitManager.unitForQuantityType(bodyMassIndexType) }
+
+var activeEnergyUnit: HKUnit { return unitManager.unitForQuantityType(activeEnergyType) }
+var dietaryEnergyUnit: HKUnit { return unitManager.unitForQuantityType(dietaryEnergyType) }
+
+var stepCountUnit: HKUnit { return unitManager.unitForQuantityType(stepCountType) }
+var walkingDistanceUnit: HKUnit { return unitManager.unitForQuantityType(walkingRunningDistanceType) }
+
+
+/// Formatter Units
+var energyFormatterUnit: NSEnergyFormatterUnit { return HKUnit.energyFormatterUnitFromUnit(activeEnergyUnit) }
+var bodyMassFormatterUnit: NSMassFormatterUnit { return HKUnit.massFormatterUnitFromUnit(bodyMassUnit) }
+var walkingDistanceFormatterUnit: NSLengthFormatterUnit { return HKUnit.lengthFormatterUnitFromUnit(walkingDistanceUnit) }
 
 
