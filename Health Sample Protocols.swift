@@ -15,10 +15,8 @@ public protocol HealthQuantitySampleType {
 extension HealthQuantitySampleType {
 	/// The HealthKitUnitTypeManager Instance responsible for formatting
 	/// Your Samples as Strings & Determining the correct Unit Types for samples.
-	/// In your project this should return an instance of unitTypeManager
-	/// stored in your HealthKitSingleton Helper Class, for this playground
-	/// I've just defined a constant at the end of this file.
-	var unitManager: HealthKitUnitTypeManager { return theUnitManager }
+	/// In your project this should return a global instance of unitTypeManager.
+	var globalUnitManager: HealthKitUnitTypeManager { return unitManager }
 }
 
 // MARK: - Extension Defines a few Useful Basic prperties you may want from your HKSample
@@ -26,7 +24,7 @@ public extension HealthQuantitySampleType {
 	/// A Double representation of your samples value
 	var value: Double {
 		guard let s = sample else {return 0.0}
-		return s.quantity.doubleValueForUnit(unitManager.unitForQuantityType(s.quantityType))
+		return s.quantity.doubleValueForUnit(globalUnitManager.unitForQuantityType(s.quantityType))
 	}
 	
 	/// The Sample Start Date
@@ -45,7 +43,7 @@ public extension HealthQuantitySampleType {
 	var integerValue: Int { return Int(round(value)) }
 	var valueLabel: String {
 		guard let type = type else { return "" }
-		return unitManager.unitStringForQuantityType(type, fromDoubleValue: value)
+		return globalUnitManager.unitStringForQuantityType(type, fromDoubleValue: value)
 	}
 	
 	/// Date & Time Strings for Sample
@@ -68,12 +66,6 @@ public extension CustomStringConvertible where Self: HealthQuantitySampleType {
 	/// The variable returnng the String Representation of your sample.
 	var description: String {
 		guard value != 0 else { return "--" }
-		return unitManager.stringRepresentationForDoubleValue(value, ofQuantityType: type!)
+		return globalUnitManager.stringRepresentationForDoubleValue(value, ofQuantityType: type!)
 	}
 }
-
-
-/// A global dummy constant since our playground doesn't have a 
-/// HealthKit Helper singleton your app would normally have
-public var theUnitManager = HealthKitUnitTypeManager()
-
