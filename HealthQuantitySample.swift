@@ -12,3 +12,8 @@ import HealthKit
 struct HealthQuantitySample: HealthQuantitySampleType, CustomStringConvertible {
 	var sample: HKQuantitySample?
 }
+
+extension HealthQuantitySample: Equatable {}
+func ==(lhs: HealthQuantitySample, rhs: HealthQuantitySample) -> Bool {
+	return lhs.sample == rhs.sample
+}
