@@ -31,6 +31,6 @@ let distanceFormatter: NSLengthFormatter = {
 let calorieFormatter: NSEnergyFormatter = {
 	let formatter = NSEnergyFormatter()
 	formatter.forFoodEnergyUse = true
-	formatter.numberFormatter = numberFormatter
+	formatter.numberFormatter = integerFormatter
 	return formatter
 }()
