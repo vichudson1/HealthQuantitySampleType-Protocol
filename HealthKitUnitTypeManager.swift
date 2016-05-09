@@ -138,7 +138,8 @@ public struct HealthKitUnitTypeManager {
 		bodyMassType: HKUnit(fromString: "lb"),
 		bodyMassIndexType: HKUnit(fromString: "count"),
 		walkingRunningDistanceType: HKUnit(fromString: "mi"),
-		heartRateType: HKUnit(fromString: "count/min")
+		heartRateType: HKUnit(fromString: "count/min"),
+		exerciseMinutesType: HKUnit(fromString: "min")
 	]
 }
 
@@ -152,11 +153,12 @@ var bodyMassUnit: HKUnit { return unitManager.unitForQuantityType(bodyMassType) 
 var bodyFatPercentageUnit: HKUnit { return unitManager.unitForQuantityType(bodyFatPercentageType) }
 var bodyMassIndexUnit: HKUnit { return unitManager.unitForQuantityType(bodyMassIndexType) }
 
+var exerciseMinuteUnit: HKUnit { return unitManager.unitForQuantityType(exerciseMinutesType) }
 var activeEnergyUnit: HKUnit { return unitManager.unitForQuantityType(activeEnergyType) }
-var dietaryEnergyUnit: HKUnit { return unitManager.unitForQuantityType(dietaryEnergyType) }
-
 var stepCountUnit: HKUnit { return unitManager.unitForQuantityType(stepCountType) }
 var walkingDistanceUnit: HKUnit { return unitManager.unitForQuantityType(walkingRunningDistanceType) }
+
+var dietaryEnergyUnit: HKUnit { return unitManager.unitForQuantityType(dietaryEnergyType) }
 
 
 /// Formatter Units
